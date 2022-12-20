@@ -6,6 +6,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh '''
+                    whoami
                     npm install js-yaml
                     npm install @stoplight/json-ref-resolver
                     npm install -g @stoplight/spectral-cli
