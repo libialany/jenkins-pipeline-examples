@@ -1,14 +1,14 @@
 pipeline {
+    //agent { dockerfile true }
     agent {
-        docker { image 'node:18-bullseye' }
+        docker { image 'stoplight/spectral' }
     }
     stages {
         stage('Build') {
             steps {
                 sh '''
-                    npm install js-yaml
-                    npm install @stoplight/json-ref-resolver
-                    npm install -g @stoplight/spectral-cli
+                    node --version
+                    spectral --version
                 '''
             }
         }
@@ -16,7 +16,6 @@ pipeline {
             steps{
                 sh '''
                     node --version
-                    spectral-cli
                 '''
             }
         }
