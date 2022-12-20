@@ -1,0 +1,24 @@
+pipeline {
+    agent {
+        docker { image 'node:18-alpine' }
+    }
+    stages {
+        stage('Build') {
+            steps {
+                sh '''
+                    npm install js-yaml
+                    npm install @stoplight/json-ref-resolver
+                    npm install -g @stoplight/spectral-cli
+                '''
+            }
+        }
+        stage('Test'){
+            steps{
+                sh '''
+                    node --version
+                    spectral-cli
+                '''
+            }
+        }
+    }
+}
